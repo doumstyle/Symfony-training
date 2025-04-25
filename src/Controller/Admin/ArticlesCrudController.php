@@ -28,7 +28,11 @@ class ArticlesCrudController extends AbstractCrudController
             ImageField::new('image')->setBasePath('images/articles/')->setUploadDir('/public/images/articles/')->setUploadedFileNamePattern('[randomhash].[extension]'),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
-            AssociationField::new('category', 'Categories')->setFormTypeOption('choice_label', 'name'),
+            AssociationField::new('category', 'Categories')->setFormTypeOption('choice_label', 'name')->setLabel('Categories')->formatValue(function ($value, $entity) {
+                return implode('/', $entity->getCategory()->map(function ($category) {
+                    return $category->getName();
+                })->toArray());
+            })->hideOnForm(),
         ];
     }
 

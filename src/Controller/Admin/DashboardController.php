@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\HomeController;
 use App\Entity\Articles;
 use App\Entity\Categories;
 use App\Entity\Profiles;
