@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!
+{% endblock %}
+
+{% block main %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h2>Votre Profil</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>firstName</th>
+					<th>lastName</th>
+					<th>DoB</th>
+					<th>email</th>
+					<th>Picture</th>
+					<th>Description</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{# <tr><td colspan="7" class="text-center"><a href=" " class="alert alert-warning  ">Alimenter  votre profil</a></td></tr> #}
+
+
+				<tr>
+
+					<td>{{ app.user.firstname }}</td>
+					<td>{{ app.user.lastname }}</td>
+					<td></td>
+					<td>{{ app.user.email }}</td>
+					<td>
+						<img src="" alt="" class="img-fluid">
+					</td>
+					<td></td>
+					<td>
+						<a href="">edit</a>
+					</td>
+				</tr>
+
+
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
