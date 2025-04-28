@@ -21,7 +21,7 @@ security:
         check_path: app_login
         enable_csrf: true
         # Redirection apres le login
-        default_target_path: app_account
+        default_target_path: app_profiles_index
       logout:
         path: app_logout
         # where to redirect after logout

@@ -7,7 +7,7 @@
 	<style>
 		.example-wrapper {
 			margin: 1em auto;
-			max-width: 800px;
+			max-width: 991px;
 			width: 95%;
 			font: 18px / 1.5 sans-serif;
 		}
@@ -19,40 +19,51 @@
 
 	<div class="example-wrapper">
 		<h2>Votre Profil</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>firstName</th>
-					<th>lastName</th>
-					<th>DoB</th>
-					<th>email</th>
-					<th>Picture</th>
-					<th>Description</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
+		{% if profile is empty %}
+			<div class="text-center mb-3">
+				<a href="{{path('app_profiles_new')}}" class="btn btn-primary">Alimenter  votre profil</a>
+			</div>
+		{% else %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						<th>Picture</th>
+						<th>Description</th>
+						<th>DoB</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
 
-				{# <tr><td colspan="7" class="text-center"><a href=" " class="alert alert-warning  ">Alimenter  votre profil</a></td></tr> #}
-
-
-				<tr>
-
-					<td>{{ app.user.firstname }}</td>
-					<td>{{ app.user.lastname }}</td>
-					<td></td>
-					<td>{{ app.user.email }}</td>
-					<td>
-						<img src="" alt="" class="img-fluid">
-					</td>
-					<td></td>
-					<td>
-						<a href="">edit</a>
-					</td>
-				</tr>
+					{# <tr><td colspan="7" class="text-center"></td></tr> #}
 
 
-			</tbody>
-		</table>
+					<tr>
+
+						<td>{{ app.user.firstname }}</td>
+						<td>{{ app.user.lastname }}</td>
+						<td>{{ app.user.email }}</td>
+
+						{% for data in profile %}
+							<td>
+								<img src="{{ asset('images/profiles/' ~ data.picture) }}" alt="{{app.user.firstname}}" class="img-fluid">
+							</td>
+							<td>{{data.description}}</td>
+							<td>{{data.dateOfBirth|date('d/m/Y')}}</td>
+							<td>
+								<a href="" class="btn btn-primary">Modifier</a>
+							</td>
+
+						{% endfor %}
+					</tr>
+
+
+				</tbody>
+			</table>
+
+		{% endif %}
 	</div>
 {% endblock %}
