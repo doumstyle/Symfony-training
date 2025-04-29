@@ -9,9 +9,9 @@
 	<div class="row my-5">
 		{% for article in articles %}
 
-			<div class="col-sm-3 m-auto">
+			<div class="col-sm-4 m-auto">
 				<div class="card mb-3">
-					<img src="{{asset('images/articles/' ~ article.image)}}" class="card-img-top h-auto" alt="" width="300">
+					<img src="{{asset('images/articles/' ~ article.image)}}" class="card-img-top h-auto" alt="{{article.title}}" width="300">
 					<div class="card-body">
 						<h5 class="card-title">{{article.title}}</h5>
 						<p class="card-text">{{article.content}}</p>
@@ -19,7 +19,7 @@
 							Article created:
 							<small class="text-body-secondary">{{article.createdAt|date('Y-m-d H:i:s')}}</small>
 						</h6>
-						<div class="d-flex justify-content-between">
+						<div class="d-flex justify-content-between mt-4">
 							<a href="{{ path('app_articles_show', {'id': article.id}) }}" class="btn btn-primary">Show</a>
 							<a href="{{ path('app_articles_edit', {'id': article.id}) }}" class="btn btn-info">Edit</a>
 							{{ include('articles/_delete_form.html.twig', {'article': article}) }}
@@ -27,9 +27,11 @@
 						</div>
 					</div>
 				</div>
-				<a href="{{ path('app_articles_new') }}" class="btn btn-primary">Create new</a>
 			</div>
 		{% endfor %}
+		<div class="text-center mt-5">
+			<a href="{{ path('app_articles_new') }}" class="btn btn-primary">Create new</a>
+		</div>
 	</div>
 
 {% endblock %}

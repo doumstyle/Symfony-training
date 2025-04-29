@@ -99,7 +99,7 @@ final class ArticlesController extends AbstractController
             }
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_my_articles', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_articles_show', ['id' => $article->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('articles/edit.html.twig', [
