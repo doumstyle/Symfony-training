@@ -5,6 +5,9 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
   app.timezone: "Europe/Paris"
+  profiles_image_directory: "%kernel.project_dir%/public/images/profiles"
+  articles_image_directory: "%kernel.project_dir%/public/images/articles"
+
 services:
   # default configuration for services in *this* file
   _defaults:

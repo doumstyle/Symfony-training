@@ -18,10 +18,10 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h2>Votre Profil</h2>
+		<h2>Your Profile</h2>
 		{% if profile is empty %}
 			<div class="text-center mb-3">
-				<a href="{{path('app_profiles_new')}}" class="btn btn-primary">Alimenter  votre profil</a>
+				<a href="{{path('app_profiles_new')}}" class="btn btn-info">Update your profile</a>
 			</div>
 		{% else %}
 			<table class="table">
@@ -54,8 +54,11 @@
 							<td>{{data.description}}</td>
 							<td>{{data.dateOfBirth|date('d/m/Y')}}</td>
 							<td>
-								<a href="" class="btn btn-primary">Modifier</a>
+								<a href="{{path('app_profiles_edit', {'id':data.id})}}" class="btn btn-info mb-3">Edit</a>
+								{{ include('profiles/_delete_form.html.twig') }}
+
 							</td>
+
 
 						{% endfor %}
 					</tr>
