@@ -41,7 +41,7 @@ class ArticlesType extends AbstractType
                             'image/jpeg',
                             'image/png',
                             'image/webp',
-                            'image/svg'
+                            'image/svg+xml'
                         ],
                         'mimeTypesMessage' => 'Please insert a valid image file format',
                     ]),

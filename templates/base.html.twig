@@ -28,21 +28,8 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse w-100 d-flex justify-content-end" id="navbarNavAltMarkup">
-						<ul class="navbar-nav">
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									No catégories
-								</a>
-								<ul class="dropdown-menu w-25" aria-labelledby="navbarDropdown">
-
-
-									<li>
-										<a href="" class="nav-link ps-2 text-white"></a>
-									</li>
-
-
-								</ul>
-							</li>
+						<ul
+							class="navbar-nav">
 
 							{#<li><a href="" class="nav-link ps-2 text-white">Backoffice</a></li> #}
 							{% if app.user %}
@@ -56,11 +43,26 @@
 									{% endif %}
 
 								{% endfor %}
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Categories
+									</a>
+									<ul class="dropdown-menu w-25" aria-labelledby="navbarDropdown">
+										{% for category in categories %}
+
+											<li>
+												<a href="{{path("app_category_articles", {'id':category.id})}}" class="nav-link ps-2 text-white bg-body-tertiary">{{category.name}}</a>
+											</li>
+										{% endfor %}
+
+
+									</ul>
+								</li>
 								<li>
 									<a href="{{path('app_profiles_index')}}" class="nav-link ps-2 text-white">Compte</a>
 								</li>
 								<li>
-									<a href="" class="nav-link ps-2 text-white">Mes articles</a>
+									<a href="{{path('app_my_articles')}}" class="nav-link ps-2 text-white">Mes articles</a>
 								</li>
 								<li>
 									<a href="{{path('app_logout')}}" class="nav-link ps-2 text-white">Déconnexion</a>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+{% block title %}Home
 {% endblock %}
 
 {% block main %}
@@ -18,18 +18,68 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
+		<h1>{{title}}</h1>
+		{% if article is defined %}
+			<table class="table">
+				<tbody>
 
-		This friendly message is coming from:
-		<ul>
-			<li>Your controller at
-				<code>C:/laragon/www/blog2025/src/Controller/HomeController.php</code>
-			</li>
-			<li>Your template at
-				<code>C:/laragon/www/blog2025/templates/home/index.html.twig</code>
-			</li>
-		</ul>
-	</div>
+					<tr>
+						<th>Title</th>
+						<td>{{ article.title }}</td>
+					</tr>
+					<tr>
+						<th>Content</th>
+						<td>{{ article.content }}</td>
+					</tr>
+					<tr>
+						<th>Image</th>
+						<td><img src="{{ asset('images/articles/' ~ article.image) }}" alt="{{ article.title }}" height="300"></td>
+					</tr>
+					<tr>
+						<th>CreatedAt</th>
+						<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					</tr>
+					<tr>
+						<th>UpdatedAt</th>
+						<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="d-flex justify-content-start gap-2">
+				<a href="{{ path('app_home') }}" class="btn btn-primary">Back to list</a>
+			</div>
+		{% else %}
+			<div class="row my-5">
+				{% for article in articles %}
 
-{% endblock %}
+					<div class="col-sm-4 m-auto">
+						<div class="card mb-3">
+							<img src="{{asset("images/articles/" ~ article.image)}}" class="card-img-top h-auto" alt="" width="300">
+							<div class="card-body">
+								<h5 class="card-title">{{article.title}}</h5>
+								<p class="card-text">{{article.content}}</p>
+								<h6 class="card-text">
+									created:
+
+									<small class="text-body-secondary">{{article.createdAt|date("Y-m-d H:i")}}</small>
+								</h6>
+								<div class="d-flex justify-content-between mt-4">
+									<a href="{{path("app_home_article", {"id":article.id})}}" class="btn btn-primary">Show</a>
+									{# <a href="" class="btn btn-info">Edit</a> #}
+
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				{% if limit is defined and articles|length <= limit %}
+					<div class="text-center mt-5">
+						<a href="{{path("app_home_all")}}" class="btn btn-primary">More...</a>
+					</div>
+				{% endif %}
+
+			</div>
+		{% endif %}
+
+
+	{% endblock  %}
